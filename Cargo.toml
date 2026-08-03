@@ -1,0 +1,8 @@
+[package]
+name = "game_2048"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rand="0.8"
+dioxus = { version = "0.5", features = ["desktop"] }
