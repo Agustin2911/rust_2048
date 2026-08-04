@@ -39,6 +39,22 @@ impl Game {
         amount
     }
 
+    pub fn victory(& mut self)->bool{
+
+        for i in self.matrix{
+
+            for c in i{
+
+                if c==2048{
+                    return true;
+                }
+
+            }
+        }
+
+        return false;
+
+    }
 
     pub fn is_game_over(& self)-> bool{
 
@@ -92,7 +108,7 @@ impl Game {
 
     }
 
-    pub fn move_right(&mut self){
+    pub fn move_right(&mut self)->bool{
 
 
         for i in 0..self.matrix.len(){
@@ -152,12 +168,13 @@ impl Game {
         }
 
         self.insert_number();
+        self.victory()
       
 
     }
 
 
-    pub fn move_left(&mut self){
+    pub fn move_left(&mut self)->bool{
 
 
         for i in 0..self.matrix.len(){
@@ -202,7 +219,7 @@ impl Game {
                     
                     let value= self.matrix[i][c]*2;
                     self.matrix[i][c]=value;
-                    self.points+=value;
+                    
 
                     self.points+=value;
                     
@@ -224,6 +241,7 @@ impl Game {
         }
 
         self.insert_number();
+        self.victory()
 
     }
 
@@ -239,7 +257,7 @@ impl Game {
 
     }
 
-    pub fn move_up(&mut self){
+    pub fn move_up(&mut self)->bool{
 
 
         for c in 0..self.matrix[0 ].len(){
@@ -290,8 +308,7 @@ impl Game {
                         self.matrix[i][c]=value;
                         self.points+=value;
 
-                        self.points+=value;
-
+                
 
                         let mut t=i+1;
                         
@@ -315,11 +332,12 @@ impl Game {
 
         }
         self.insert_number();
-      
+        self.victory()
+        
     }
 
 
-    pub fn move_down(&mut self){
+    pub fn move_down(&mut self)->bool{
 
 
         for c in 0..self.matrix[0 ].len(){
@@ -376,6 +394,7 @@ impl Game {
                         
                        
                         self.matrix[0][c] = 0;
+
                     }
                 }
 
@@ -385,6 +404,8 @@ impl Game {
 
         }
         self.insert_number();
+        self.victory()
+
     }
     
 }
